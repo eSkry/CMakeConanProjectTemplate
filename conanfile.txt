@@ -1,0 +1,12 @@
+[requires]
+fmt/9.1.0
+boost/1.81.0
+nlohmann_json/3.11.2
+
+[generators]
+cmake
+
+[imports]
+bin, *.dll -> ./bin
+lib, *.dll -> ./bin
+lib, *.so -> ./bin
