@@ -1,10 +1,10 @@
 import os
 import subprocess
 import platform
-import sys
 
 
 def shell_command(program, args=None, no_errors=False):
+    print(f"Exec command: {program} {args}")
     if args is None:
         args = []
     if isinstance(args, str):
@@ -14,7 +14,8 @@ def shell_command(program, args=None, no_errors=False):
         args = [f'"{arg}"' for arg in args]
     args.insert(0, program)
 
-    ret_code = subprocess.call(args, stderr=subprocess.STDOUT, shell=True)
+    command = " ".join(args)
+    ret_code = subprocess.call(command, stderr=subprocess.STDOUT, shell=True)
 
     if ret_code and no_errors:
         raise Exception(f"Execute shell command error: ({program}): {ret_code}")
@@ -22,6 +23,7 @@ def shell_command(program, args=None, no_errors=False):
 
 
 def shell_command_ret(program, args=None):
+    print(f"Exec command: {program} {args}")
     if args is None:
         args = []
     if isinstance(args, str):
@@ -48,7 +50,7 @@ def shell_command_ret(program, args=None):
 
 def shell_command_in_dir(directory, program, args, no_errors=False):
     old_dir = os.getcwd()
-    os.chdir(directory)
+    os.chdir(str(directory))
     ret = shell_command(program, args, no_errors)
     os.chdir(old_dir)
     return ret
@@ -56,7 +58,7 @@ def shell_command_in_dir(directory, program, args, no_errors=False):
 
 def shell_command_ret_in_dir(directory, program, args, no_errors=False):
     old_dir = os.getcwd()
-    os.chdir(directory)
+    os.chdir(str(directory))
     ret = shell_command_ret(program, args)
     os.chdir(old_dir)
     return ret
