@@ -1,0 +1,1 @@
+# CMake with Conan template
