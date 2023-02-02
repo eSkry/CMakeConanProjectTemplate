@@ -3,7 +3,7 @@ import subprocess
 import platform
 
 
-def shell_command(program, args=None, no_errors=False):
+def command(program, args=None, no_errors=False):
     print(f"Exec command: {program} {args}")
     if args is None:
         args = []
@@ -22,7 +22,7 @@ def shell_command(program, args=None, no_errors=False):
     return ret_code
 
 
-def shell_command_ret(program, args=None):
+def command_ret(program, args=None):
     print(f"Exec command: {program} {args}")
     if args is None:
         args = []
@@ -48,17 +48,17 @@ def shell_command_ret(program, args=None):
     return result_data
 
 
-def shell_command_in_dir(directory, program, args, no_errors=False):
+def command_in_dir(directory, program, args, no_errors=False):
     old_dir = os.getcwd()
     os.chdir(str(directory))
-    ret = shell_command(program, args, no_errors)
+    ret = command(program, args, no_errors)
     os.chdir(old_dir)
     return ret
 
 
-def shell_command_ret_in_dir(directory, program, args, no_errors=False):
+def command_ret_in_dir(directory, program, args, no_errors=False):
     old_dir = os.getcwd()
     os.chdir(str(directory))
-    ret = shell_command_ret(program, args)
+    ret = command_ret(program, args)
     os.chdir(old_dir)
     return ret

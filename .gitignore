@@ -103,3 +103,8 @@ _deps
 cmake-build-*
 build
 .idea
+.venv
+dist
+
+### Python
+*.pyc
